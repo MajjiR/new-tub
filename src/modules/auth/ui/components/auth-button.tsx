@@ -1,10 +1,23 @@
 import { Button } from "@/components/ui/button"
-import { UserCircleIcon } from "lucide-react"
+import { User, UserCircleIcon } from "lucide-react"
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs"
 
 export const AuthButton = () => {
 
 
     return (
+
+        <>
+
+        <SignedIn>
+            <UserButton/>
+            {/* add menu items studio*/}
+        </SignedIn>
+
+        <SignedOut>
+
+
+        <SignInButton>
 
         <Button 
         variant="outline"
@@ -13,6 +26,19 @@ export const AuthButton = () => {
             <UserCircleIcon/>
             Sign in
         </Button>
+
+        </SignInButton>
+
+
+
+        </SignedOut>
+        
+        
+        </>
+
+        
+
+        
     )
 
 
