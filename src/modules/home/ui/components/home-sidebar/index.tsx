@@ -14,7 +14,11 @@ export const HomeSidebar = () => {
     <Sidebar className="pt-14 z-40 border-none" collapsible="icon">
 
     <SidebarContent className="bg-background">
+        
+        
+        
         <MainSection/>
+        
         <Separator/>
 
         <PersonalSection/>
