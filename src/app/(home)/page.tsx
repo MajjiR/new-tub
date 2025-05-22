@@ -1,11 +1,28 @@
 
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
-export default function Home() {
+
+import {HydrateClient, trpc} from "@/trpc/server"; 
+import { PageClient } from "./client";
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+
+
+
+export default async function Home() {
+
+  void trpc.hello.prefetch({text: "Rohan"});
+
+
+
   return (
-   <div>
-    I will load vids in future
-   </div>
+   <HydrateClient>
+    
+    <Suspense fallback={<div>Loading...</div>}>
+    <ErrorBoundary fallback={<div>Something went wrong</div>}>
+    <PageClient/>
+    </ErrorBoundary>
+    </Suspense>
+    
+   </HydrateClient>
    
   )
 }
