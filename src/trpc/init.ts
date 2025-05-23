@@ -5,6 +5,8 @@ import {auth} from "@clerk/nextjs/server";
 import {db} from "@/db";  
 import {users} from "@/db/schema";  
 import { eq } from 'drizzle-orm';
+import { ratelimit } from '@/lib/ratelimit';
+
 
 
 export const createTRPCContext = cache(async () => {
@@ -33,6 +35,17 @@ const t = initTRPC.context<Context>().create({
   transformer: superjson,
 });
 
+//REDIS ratelimiter
+
+
+
+
+
+
+
+
+
+
 //Auth Procedure
 
 export const protectedProcedure = t.procedure.use(async function isAuthed(opts) {
@@ -48,6 +61,12 @@ export const protectedProcedure = t.procedure.use(async function isAuthed(opts) 
 
     if(!user) {
         throw new TRPCError({code: "NOT_FOUND"});
+    }
+
+    const {success} = await ratelimit.limit(user.id);
+
+    if(!success) {
+        throw new TRPCError({code: "TOO_MANY_REQUESTS"});
     }
 
 
