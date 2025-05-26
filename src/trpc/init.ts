@@ -48,6 +48,8 @@ const t = initTRPC.context<Context>().create({
 
 //Auth Procedure
 
+
+
 export const protectedProcedure = t.procedure.use(async function isAuthed(opts) {
     const {ctx, next} = opts;
     if(!ctx.clerkUserId) {
