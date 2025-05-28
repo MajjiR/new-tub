@@ -15,7 +15,7 @@ import { Skeleton } from "./ui/skeleton";
 
 
 
-
+ 
 
 
 
@@ -76,21 +76,24 @@ export const FilterCarousel = ({
             className="w-full px-12"
             >
                 <CarouselContent className="ml-3">
-                    <CarouselItem className="basis-auto pl-3"> 
+
+                {!isLoading && 
+                    <CarouselItem className="basis-auto pl-3"
+                    onClick={() => onSelect?.(null)}> 
 
                     <Badge 
                     variant={value === "" ? "default" : "outline"}
-                    onClick={() => onSelect?.(null)}
                     className="rounded-lg px-3 py-1 cursor-pointer whitespace-nowrap text-sm">
                         All
                     </Badge>
 
-                    </CarouselItem>
+                    </CarouselItem> }
 
                 
                 {isLoading && Array.from({length: 14}).map((_, index) => {
                     return (
-                        <CarouselItem key={index} className="pl-3 basis-auto">
+                        <CarouselItem key={index} className="pl-3 basis-auto"
+                        >
                             <Skeleton className="px-3 py-1 h-full text-sm w-[100px] font-semibold rounded-lg"/>
                             &  nbsp;
                             <Skeleton/>
