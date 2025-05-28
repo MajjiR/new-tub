@@ -2,6 +2,7 @@
 
 import {PlusIcon} from "lucide-react";
 import {Button} from "@/components/ui/button";
+import { trpc } from "@/trpc/client";
 
 
 
@@ -9,8 +10,10 @@ import {Button} from "@/components/ui/button";
 
 export const StudioUploadModal = () => {
 
+    const create = trpc.videos.create.useMutation();
+
     return (
-    <Button variant="secondary">
+    <Button variant="secondary" onClick={() => create.mutate()}>
     <PlusIcon/>
     Create
     </Button>
