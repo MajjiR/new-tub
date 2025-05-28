@@ -21,3 +21,4 @@ export const categories = pgTable("categories", {
     createdAt:timestamp("created_at").notNull(),
     updatedAt:timestamp("updated_at").notNull(),
 }, (t) => [uniqueIndex("name_idx").on(t.name)]);
+
