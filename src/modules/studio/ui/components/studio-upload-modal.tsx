@@ -6,6 +6,7 @@ import { trpc } from "@/trpc/client";
 import { toast } from "sonner";
 import { ResponsiveModal } from "@/components/responsive-modal";
 import { useState } from "react";
+import {StudioUploader} from "./studio-uploader";
 
   
 
@@ -40,7 +41,7 @@ export const StudioUploadModal = () => {
 
         <>
         <ResponsiveModal open={open} onOpenChange={() => setOpen(false)} title="Upload Video">
-            <p>This will be an uploder t</p>
+            <StudioUploader/>
         </ResponsiveModal>
     <Button variant="secondary" onClick={() => {create.mutate (); setOpen(true);}} disabled={create.isPending}>
     {create.isPending ? <Loader2Icon className="mr-2 h-4 w-4 animate-spin" /> : <PlusIcon/>}
